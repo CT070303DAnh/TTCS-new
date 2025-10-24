@@ -1,0 +1,10 @@
+python-dotenv
+pandas
+numpy
+certifi
+scikit-learn
+fastapi
+uvicorn
+python-multipart
+
+# -e .

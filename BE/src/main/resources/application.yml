@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: diabetes-backend
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/diabetes_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    # Secure 256-bit key (32 bytes base64 encoded)
+    secret: "bXlzZWNyZXRrZXloZXJlZm9yZGlhYmV0ZXNjYXJlYXBwMjAyNQ=="
+    expirationMs: 604800000  # 7 days
+  pythonApi:
+    baseUrl: "http://localhost:8000"
+
