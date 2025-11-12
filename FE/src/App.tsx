@@ -389,6 +389,7 @@ function Diagnosis() {
 
 	function Field({ fieldDef }: { fieldDef: typeof diagnosisFields[0] }) {
 		const value = form[fieldDef.name];
+		const [isFocused, setIsFocused] = useState(false);
 		
 		const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 			// Save current scroll position
@@ -402,25 +403,48 @@ function Diagnosis() {
 				window.scrollTo(0, scrollPositionRef.current);
 			});
 		};
+
+		const handleNumberChange = (newValue: number) => {
+			// Validate min/max
+			let validValue = newValue;
+			if (fieldDef.min !== undefined && newValue < fieldDef.min) {
+				validValue = fieldDef.min;
+			}
+			if (fieldDef.max !== undefined && newValue > fieldDef.max) {
+				validValue = fieldDef.max;
+			}
+			setForm(prev => ({ ...prev, [fieldDef.name]: validValue }));
+		};
 		
 		return (
-			<div className="group bg-gradient-to-br from-white to-gray-50 p-4 rounded-xl border-2 border-gray-200 hover:border-primary-300 hover:shadow-md transition-all duration-300">
+			<div className={`group bg-gradient-to-br from-white to-gray-50 p-5 rounded-xl border-2 transition-all duration-300 ${
+				isFocused 
+					? 'border-primary-500 shadow-lg bg-gradient-to-br from-primary-50 to-white ring-2 ring-primary-200' 
+					: 'border-gray-200 hover:border-primary-300 hover:shadow-md'
+			}`}>
 				<label className="block">
-					<span className="block text-sm font-semibold text-gray-800 mb-1 group-hover:text-primary-700 transition-colors">
+					<span className="block text-sm font-bold text-gray-800 mb-1 group-hover:text-primary-700 transition-colors">
 						{fieldDef.label}
 					</span>
 					{fieldDef.hint && (
-						<span className="block text-xs text-gray-500 mb-2 italic">
+						<span className="block text-xs text-gray-500 mb-3 italic">
 							💡 {fieldDef.hint}
 						</span>
 					)}
 					
 					{fieldDef.type === 'select' ? (
 						<select
-							className="input-field font-medium cursor-pointer"
+							className="input-field font-medium cursor-pointer hover:border-primary-400 focus:ring-2 focus:ring-primary-300 transition-all"
 							value={value}
 							onChange={handleSelectChange}
-							onFocus={(e) => e.target.style.scrollMarginTop = '100px'}
+							onFocus={(e) => {
+								e.preventDefault();
+								setIsFocused(true);
+							}}
+							onBlur={(e) => {
+								e.preventDefault();
+								setIsFocused(false);
+							}}
 						>
 							{fieldDef.options?.map(opt => (
 								<option key={opt.value} value={opt.value}>
@@ -429,18 +453,77 @@ function Diagnosis() {
 							))}
 						</select>
 					) : (
-						<div>
+						<div className="space-y-3">
+							{/* Hiển thị giá trị hiện tại */}
+							<div className="flex items-center justify-between">
+								<span className="text-xs font-medium text-gray-500">Giá trị hiện tại:</span>
+								<span className={`text-lg font-bold transition-colors duration-200 ${
+									isFocused ? 'text-primary-600' : 'text-gray-800'
+								}`}>
+									{value}
+								</span>
+							</div>
+
+							{/* Range slider */}
+							<input
+								type="range"
+								min={fieldDef.min}
+								max={fieldDef.max}
+								step={fieldDef.step}
+								value={value}
+								onChange={e => handleNumberChange(Number(e.target.value))}
+								onFocus={(e) => {
+									e.preventDefault();
+									setIsFocused(true);
+								}}
+								onBlur={(e) => {
+									e.preventDefault();
+									setIsFocused(false);
+								}}
+								onMouseDown={() => {
+									// Prevent scroll on mousedown
+									const scrollY = window.scrollY;
+									requestAnimationFrame(() => {
+										window.scrollTo(0, scrollY);
+									});
+								}}
+								className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary-600 hover:accent-primary-700 transition-all"
+								style={{
+									background: `linear-gradient(to right, 
+										rgb(79, 70, 229) 0%, 
+										rgb(79, 70, 229) ${((value - (fieldDef.min || 0)) / ((fieldDef.max || 100) - (fieldDef.min || 0))) * 100}%, 
+										rgb(229, 231, 235) ${((value - (fieldDef.min || 0)) / ((fieldDef.max || 100) - (fieldDef.min || 0))) * 100}%, 
+										rgb(229, 231, 235) 100%)`
+								}}
+							/>
+
+							{/* Input số để nhập chính xác */}
 							<input
 								type="number"
 								min={fieldDef.min}
 								max={fieldDef.max}
 								step={fieldDef.step}
-								className="input-field text-center font-medium"
+								className="input-field text-center font-bold text-lg hover:border-primary-400 focus:ring-2 focus:ring-primary-300 transition-all"
 								value={value}
-								onChange={e => setForm(prev => ({ ...prev, [fieldDef.name]: Number(e.target.value) }))}
+								onChange={e => handleNumberChange(Number(e.target.value))}
+								onFocus={(e) => {
+									e.preventDefault();
+									setIsFocused(true);
+								}}
+								onBlur={(e) => {
+									e.preventDefault();
+									setIsFocused(false);
+								}}
 							/>
+
+							{/* Hiển thị min/max */}
+							<div className="flex justify-between text-xs text-gray-400 font-medium">
+								<span>Min: {fieldDef.min}</span>
+								<span>Max: {fieldDef.max}</span>
+							</div>
+
 							{fieldDef.name === 'BMI' && (
-								<div className="mt-2">
+								<div className="mt-3 pt-3 border-t border-gray-200">
 									<BMICalculator 
 										onBMICalculated={(bmi) => setForm(prev => ({ ...prev, BMI: bmi }))}
 									/>
@@ -629,15 +712,15 @@ function History() {
 					<div
 						key={item.id}
 						className={`card hover:scale-[1.02] transition-transform ${
-							item.prediction === 1 ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'
+							item.prediction !== 0 ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'
 						}`}
 					>
 						<div className="flex items-start justify-between mb-4">
 							<div className="flex items-center gap-3">
-								<div className="text-4xl">{item.prediction === 1 ? '⚠️' : '✅'}</div>
+								<div className="text-4xl">{item.prediction !== 0 ? '⚠️' : '✅'}</div>
 								<div>
-									<h3 className={`text-xl font-bold ${item.prediction === 1 ? 'text-red-700' : 'text-green-700'}`}>
-										{item.prediction === 1 ? 'Có nguy cơ tiểu đường' : 'Không có nguy cơ'}
+									<h3 className={`text-xl font-bold ${item.prediction !== 0 ? 'text-red-700' : 'text-green-700'}`}>
+										{item.prediction !== 0 ? 'Có nguy cơ tiểu đường' : 'Không có nguy cơ'}
 									</h3>
 									<p className="text-sm text-gray-500">
 										{new Date(item.createdAt).toLocaleString('vi-VN')}
@@ -645,7 +728,7 @@ function History() {
 								</div>
 							</div>
 							<div className={`px-3 py-1 rounded-full text-sm font-semibold ${
-								item.prediction === 1 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+								item.prediction !== 0 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
 							}`}>
 								Kết quả: {item.prediction}
 							</div>
@@ -658,13 +741,14 @@ function History() {
 							<div className="mt-4 grid md:grid-cols-3 gap-3">
 								{Object.entries(item.inputData).map(([key, value]) => {
 									const field = diagnosisFields.find(f => f.name === key);
+									const numValue = Number(value);
 									return (
 										<div key={key} className="bg-gray-50 p-3 rounded-lg">
 											<div className="text-xs text-gray-500">{field?.label || key}</div>
 											<div className="font-semibold text-gray-800">
 												{field?.type === 'select' 
-													? field.options?.find(o => o.value === value)?.label || value
-													: value
+													? field.options?.find(o => o.value === numValue)?.label || String(value)
+													: String(value)
 												}
 											</div>
 										</div>

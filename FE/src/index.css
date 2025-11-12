@@ -18,6 +18,16 @@
       opacity: 1; 
     }
   }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
+  }
 }
 
 html {
@@ -28,11 +38,19 @@ html {
 
 body {
   @apply antialiased;
+  overflow-anchor: none;
 }
 
-/* Prevent scroll on select focus */
-select:focus {
-  scroll-margin-top: 100px;
+/* Prevent scroll jump on focus */
+select,
+input[type="range"],
+input[type="number"] {
+  scroll-margin: 0;
+}
+
+select:focus,
+input:focus {
+  scroll-margin-top: 0;
 }
 
 /* Custom Scrollbar */
@@ -65,10 +83,76 @@ select:focus {
 
   .card {
     @apply bg-white rounded-2xl shadow-lg p-6 transition-all duration-300 hover:shadow-2xl;
+    contain: layout;
   }
 
   .input-field {
-    @apply w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary-200 focus:border-primary-500 transition-all duration-200 outline-none;
+    @apply w-full border-2 border-gray-300 rounded-lg px-4 py-3 focus:ring-4 focus:ring-primary-200 focus:border-primary-500 transition-all duration-300 outline-none;
+    contain: layout;
+  }
+
+  /* Smooth range slider styles */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 8px;
+    border-radius: 9999px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(79, 70, 229), rgb(99, 102, 241));
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
+    transition: all 0.2s ease;
+    border: 2px solid white;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.6);
+  }
+
+  input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.8);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgb(79, 70, 229), rgb(99, 102, 241));
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4);
+    transition: all 0.2s ease;
+    border: 2px solid white;
+  }
+
+  input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.6);
+  }
+
+  input[type="range"]::-moz-range-thumb:active {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(79, 70, 229, 0.8);
+  }
+
+  input[type="range"]:focus {
+    outline: none;
+  }
+
+  /* Number input hide spinner */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    opacity: 1;
   }
 
   .gradient-bg {
