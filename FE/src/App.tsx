@@ -6,6 +6,25 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { diagnosisFields, getDefaultFormValues } from './utils/diagnosisFields';
 import { BMICalculator } from './components/BMICalculator';
 import { generateHealthAdvice } from './utils/healthAdvice';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faRobot, faBoltLightning, faLock, faClipboardList, faTriangleExclamation, faHandHoldingHeart
+	, faHospital, faBookMedical, faClockRotateLeft, faStethoscope, faRocket, faCity,
+	faPhoneVolume,
+	faRegistered,
+	faUnlockKeyhole,
+	faDoorOpen,
+	faLightbulb,
+	faMagnifyingGlassDollar,
+	faFire,
+	faBriefcaseMedical,
+	faBoxOpen,
+	faCircleXmark
+} from '@fortawesome/free-solid-svg-icons';
+import { faMailBulk } from '@fortawesome/free-solid-svg-icons/faMailBulk';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons/faCheckCircle';
+import { faHourglassHalf } from '@fortawesome/free-solid-svg-icons/faHourglassHalf';
+import { faAreaChart } from '@fortawesome/free-solid-svg-icons/faAreaChart';
 
 function Layout({ children }: { children: React.ReactNode }) {
 	const { isAuthenticated, logout, userEmail } = useAuth();
@@ -24,7 +43,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 			<header className="bg-white shadow-lg sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
 				<div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
 					<Link to="/" className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent hover:from-primary-700 hover:to-primary-900 transition-all transform hover:scale-105">
-						🩺 Diabetes Care
+						<FontAwesomeIcon icon={faStethoscope} style={{ color: '#0479B6' }} /> Diabetes Care
 					</Link>
 					<nav className="flex items-center gap-6">
 						{isAuthenticated && (
@@ -47,7 +66,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 										</span>
 									</div>
 									<button onClick={handleLogout} className="text-gray-700 hover:text-red-600 font-medium transition-colors hover:scale-105 transform">
-										🚪
+										<FontAwesomeIcon icon={faDoorOpen} style={{ color: '#0885C3' }} size="xl" />
 									</button>
 								</div>
 							</>
@@ -71,7 +90,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 					<div className="grid md:grid-cols-3 gap-8 mb-6">
 						<div>
 							<h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-								🩺 Diabetes Care
+								<FontAwesomeIcon icon={faStethoscope} style={{ color: '#0479B6' }} /> Diabetes Care
 							</h3>
 							<p className="text-primary-100 text-sm leading-relaxed">
 								Hệ thống chẩn đoán nguy cơ tiểu đường sử dụng AI, giúp bạn theo dõi sức khoẻ hiệu quả.
@@ -80,23 +99,23 @@ function Layout({ children }: { children: React.ReactNode }) {
 						<div>
 							<h4 className="font-semibold mb-3 text-primary-100">Liên kết</h4>
 							<ul className="space-y-2 text-sm">
-								<li><Link to="/" className="text-primary-200 hover:text-white transition-colors">🏠 Trang chủ</Link></li>
-								<li><Link to="/diagnosis" className="text-primary-200 hover:text-white transition-colors">🏥 Chẩn đoán</Link></li>
-								<li><Link to="/history" className="text-primary-200 hover:text-white transition-colors">📊 Lịch sử</Link></li>
+								<li><Link to="/" className="text-primary-200 hover:text-white transition-colors"><FontAwesomeIcon icon={faHospital} style={{ color: '#10f491' }} /> Trang chủ</Link></li>
+								<li><Link to="/diagnosis" className="text-primary-200 hover:text-white transition-colors"><FontAwesomeIcon icon={faBookMedical} style={{ color: '#0ed8d4' }} /> Chẩn đoán</Link></li>
+								<li><Link to="/history" className="text-primary-200 hover:text-white transition-colors"><FontAwesomeIcon icon={faClockRotateLeft} style={{ color: '#ffffff' }} /> Lịch sử</Link></li>
 							</ul>
 						</div>
 						<div>
 							<h4 className="font-semibold mb-3 text-primary-100">Thông tin</h4>
 							<ul className="space-y-2 text-sm text-primary-200">
-								<li>📧 support@diabetescare.vn</li>
-								<li>📱 (+84) 123-456-789</li>
-								<li>🏢 TP. Hồ Chí Minh, Việt Nam</li>
+								<li><FontAwesomeIcon icon={faMailBulk} style={{ color: '#6eee5d' }} /> support@diabetescare.vn</li>
+								<li><FontAwesomeIcon icon={faPhoneVolume} style={{ color: '#aec3F4' }} /> (+84) 123-456-789</li>
+								<li><FontAwesomeIcon icon={faCity} style={{ color: '#beb3c4' }} /> TP. Hồ Chí Minh, Việt Nam</li>
 							</ul>
 						</div>
 					</div>
 					<div className="border-t border-primary-700 pt-6 text-center text-sm text-primary-200">
-						<p>© 2025 Diabetes Care. Được phát triển với ❤️ bởi Nhóm 30</p>
-						<p className="mt-1">⚠️ Lưu ý: Đây là công cụ hỗ trợ, không thay thế chẩn đoán y tế chuyên nghiệp</p>
+						<p>© 2025 Diabetes Care. Được phát triển với <FontAwesomeIcon icon={faHandHoldingHeart} size='lg' style={{ color: '#e1093f' }} /> bởi Nhóm 30</p>
+						<p className="mt-1"><FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#45e600' }} /> Lưu ý: Đây là công cụ hỗ trợ, không thay thế chẩn đoán y tế chuyên nghiệp</p>
 					</div>
 				</div>
 			</footer>
@@ -121,7 +140,7 @@ function Home() {
 				{!isAuthenticated && (
 					<div className="flex gap-4 justify-center pt-4">
 						<button onClick={() => nav('/register')} className="btn-primary text-lg px-8 py-4">
-							Bắt đầu ngay 🚀
+							Bắt đầu ngay <FontAwesomeIcon icon={faRocket} style={{ color: '#eadcdc' }} />
 						</button>
 						<button onClick={() => nav('/login')} className="btn-secondary text-lg px-8 py-4">
 							Đăng nhập
@@ -130,7 +149,7 @@ function Home() {
 				)}
 				{isAuthenticated && (
 					<button onClick={() => nav('/diagnosis')} className="btn-primary text-lg px-8 py-4">
-						Chẩn đoán ngay 🏥
+						Chẩn đoán ngay <FontAwesomeIcon icon={faBookMedical} style={{ color: '#0ed8d4' }} />
 					</button>
 				)}
 			</div>
@@ -138,21 +157,22 @@ function Home() {
 			{/* Features */}
 			<div className="grid md:grid-cols-3 gap-8">
 				<div className="feature-card">
-					<div className="text-4xl mb-4">🤖</div>
+					<div className="text-4xl mb-4"><FontAwesomeIcon icon={faRobot} style={{ color: "#b63a1b", }} />
+					</div>
 					<h3 className="text-xl font-bold mb-2 text-gray-800">AI Thông minh</h3>
 					<p className="text-gray-600">
 						Sử dụng mô hình Machine Learning được huấn luyện trên hàng trăm nghìn ca bệnh thực tế
 					</p>
 				</div>
 				<div className="feature-card">
-					<div className="text-4xl mb-4">⚡</div>
+					<div className="text-4xl mb-4"><FontAwesomeIcon icon={faBoltLightning} style={{ color: "#FFD43B", }} /></div>
 					<h3 className="text-xl font-bold mb-2 text-gray-800">Nhanh chóng</h3>
 					<p className="text-gray-600">
 						Kết quả chẩn đoán trong vài giây, không cần chờ đợi lâu
 					</p>
 				</div>
 				<div className="feature-card">
-					<div className="text-4xl mb-4">🔒</div>
+					<div className="text-4xl mb-4"><FontAwesomeIcon icon={faLock} style={{ color: "#74C0FC", }} /></div>
 					<h3 className="text-xl font-bold mb-2 text-gray-800">Bảo mật</h3>
 					<p className="text-gray-600">
 						Thông tin sức khỏe của bạn được mã hóa và bảo mật tuyệt đối
@@ -162,7 +182,7 @@ function Home() {
 
 			{/* How it works */}
 			<div className="card">
-				<h2 className="text-2xl font-bold mb-6 text-center text-gray-800">📋 Cách sử dụng</h2>
+				<h2 className="text-2xl font-bold mb-6 text-center text-gray-800"><FontAwesomeIcon icon={faClipboardList} size='xl' style={{ color: "#113778", }} /> Cách sử dụng</h2>
 				<div className="grid md:grid-cols-4 gap-6">
 					<div className="text-center space-y-3">
 						<div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto shadow-lg">
@@ -198,11 +218,11 @@ function Home() {
 			{/* Warning */}
 			<div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg shadow-md">
 				<div className="flex items-start gap-4">
-					<div className="text-3xl">⚠️</div>
+					<div className="text-3xl"><FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#45e600' }} /></div>
 					<div>
 						<h3 className="font-bold text-yellow-800 mb-2">Lưu ý quan trọng</h3>
 						<p className="text-yellow-700 leading-relaxed">
-							Kết quả chẩn đoán từ hệ thống này chỉ mang tính tham khảo và không thay thế cho chẩn đoán y tế chuyên nghiệp. 
+							Kết quả chẩn đoán từ hệ thống này chỉ mang tính tham khảo và không thay thế cho chẩn đoán y tế chuyên nghiệp.
 							Nếu có dấu hiệu bất thường, vui lòng tham khảo ý kiến bác sĩ.
 						</p>
 					</div>
@@ -239,7 +259,7 @@ function Login() {
 		<div className="max-w-md mx-auto animate-slide-up">
 			<div className="card">
 				<div className="text-center mb-6">
-					<div className="text-5xl mb-4">🔐</div>
+					<div className="text-5xl mb-4"><FontAwesomeIcon icon={faUnlockKeyhole} style={{ color: '#0272AE' }} /></div>
 					<h2 className="text-3xl font-bold text-gray-800">Đăng nhập</h2>
 					<p className="text-gray-600 mt-2">Chào mừng bạn trở lại!</p>
 				</div>
@@ -268,7 +288,7 @@ function Login() {
 					</div>
 					{error && (
 						<div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-							<p className="text-red-700 text-sm">❌ {error}</p>
+							<p className="text-red-700 text-sm"><FontAwesomeIcon icon={faCircleXmark} style={{ color: '#0479B6' }} /> {error}</p>
 						</div>
 					)}
 					<button
@@ -318,7 +338,7 @@ function Register() {
 		<div className="max-w-md mx-auto animate-slide-up">
 			<div className="card">
 				<div className="text-center mb-6">
-					<div className="text-5xl mb-4">✨</div>
+					<div className="text-5xl mb-4"><FontAwesomeIcon icon={faRegistered} style={{ color: '#0272AE' }} /></div>
 					<h2 className="text-3xl font-bold text-gray-800">Đăng ký</h2>
 					<p className="text-gray-600 mt-2">Tạo tài khoản miễn phí!</p>
 				</div>
@@ -358,7 +378,7 @@ function Register() {
 					</div>
 					{error && (
 						<div className="bg-red-50 border-l-4 border-red-500 p-4 rounded">
-							<p className="text-red-700 text-sm">❌ {error}</p>
+							<p className="text-red-700 text-sm"><FontAwesomeIcon icon={faCircleXmark} style={{ color: '#0479B6' }} /> {error}</p>
 						</div>
 					)}
 					<button
@@ -390,14 +410,14 @@ function Diagnosis() {
 	function Field({ fieldDef }: { fieldDef: typeof diagnosisFields[0] }) {
 		const value = form[fieldDef.name];
 		const [isFocused, setIsFocused] = useState(false);
-		
+
 		const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
 			// Save current scroll position
 			scrollPositionRef.current = window.scrollY;
-			
+
 			const newValue = Number(e.target.value);
 			setForm(prev => ({ ...prev, [fieldDef.name]: newValue }));
-			
+
 			// Restore scroll position after state update
 			requestAnimationFrame(() => {
 				window.scrollTo(0, scrollPositionRef.current);
@@ -415,23 +435,22 @@ function Diagnosis() {
 			}
 			setForm(prev => ({ ...prev, [fieldDef.name]: validValue }));
 		};
-		
+
 		return (
-			<div className={`group bg-gradient-to-br from-white to-gray-50 p-5 rounded-xl border-2 transition-all duration-300 ${
-				isFocused 
-					? 'border-primary-500 shadow-lg bg-gradient-to-br from-primary-50 to-white ring-2 ring-primary-200' 
-					: 'border-gray-200 hover:border-primary-300 hover:shadow-md'
-			}`}>
+			<div className={`group bg-gradient-to-br from-white to-gray-50 p-5 rounded-xl border-2 transition-all duration-300 ${isFocused
+				? 'border-primary-500 shadow-lg bg-gradient-to-br from-primary-50 to-white ring-2 ring-primary-200'
+				: 'border-gray-200 hover:border-primary-300 hover:shadow-md'
+				}`}>
 				<label className="block">
 					<span className="block text-sm font-bold text-gray-800 mb-1 group-hover:text-primary-700 transition-colors">
 						{fieldDef.label}
 					</span>
 					{fieldDef.hint && (
 						<span className="block text-xs text-gray-500 mb-3 italic">
-							💡 {fieldDef.hint}
+							<FontAwesomeIcon icon={faLightbulb} style={{ color: '#FFD35D' }} /> {fieldDef.hint}
 						</span>
 					)}
-					
+
 					{fieldDef.type === 'select' ? (
 						<select
 							className="input-field font-medium cursor-pointer hover:border-primary-400 focus:ring-2 focus:ring-primary-300 transition-all"
@@ -457,9 +476,8 @@ function Diagnosis() {
 							{/* Hiển thị giá trị hiện tại */}
 							<div className="flex items-center justify-between">
 								<span className="text-xs font-medium text-gray-500">Giá trị hiện tại:</span>
-								<span className={`text-lg font-bold transition-colors duration-200 ${
-									isFocused ? 'text-primary-600' : 'text-gray-800'
-								}`}>
+								<span className={`text-lg font-bold transition-colors duration-200 ${isFocused ? 'text-primary-600' : 'text-gray-800'
+									}`}>
 									{value}
 								</span>
 							</div>
@@ -524,7 +542,7 @@ function Diagnosis() {
 
 							{fieldDef.name === 'BMI' && (
 								<div className="mt-3 pt-3 border-t border-gray-200">
-									<BMICalculator 
+									<BMICalculator
 										onBMICalculated={(bmi) => setForm(prev => ({ ...prev, BMI: bmi }))}
 									/>
 								</div>
@@ -554,7 +572,7 @@ function Diagnosis() {
 		<div className="space-y-8">
 			<div className="text-center animate-slide-up">
 				<h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-					🩺 Chẩn đoán nguy cơ tiểu đường
+					<FontAwesomeIcon icon={faStethoscope} style={{ color: '#0479B6' }} /> Chẩn đoán nguy cơ tiểu đường
 				</h1>
 				<p className="text-gray-600">Vui lòng điền đầy đủ thông tin dưới đây</p>
 			</div>
@@ -575,16 +593,21 @@ function Diagnosis() {
 				>
 					{loading ? (
 						<span className="flex items-center gap-3">
-							<span className="animate-spin">⏳</span>
+							<span className="animate-spin"><FontAwesomeIcon icon={faHourglassHalf} size="xl" style={{ color: '#FEFCE8' }} /></span>
 							Đang phân tích...
 						</span>
-					) : '🔍 Dự đoán ngay'}
+					) : (
+						<span className="flex items-center gap-2">
+							<FontAwesomeIcon icon={faMagnifyingGlassDollar} style={{ color: '#68E45F' }} />
+							<span>Dự đoán ngay</span>
+						</span>
+					)}
 				</button>
-				
+
 				{result !== null && (
 					<>
 						<div className={`w-full max-w-2xl p-8 rounded-2xl text-center shadow-xl animate-slide-up ${result ? 'bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-300' : 'bg-gradient-to-br from-green-50 to-green-100 border-2 border-green-300'}`}>
-							<div className="text-6xl mb-4 animate-bounce">{result ? '⚠️' : '✅'}</div>
+							<div className="text-6xl mb-4 animate-bounce">{result ? <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#EF4444' }} /> : <FontAwesomeIcon icon={faCheckCircle} style={{ color: '#58D58D' }} />}</div>
 							<h3 className={`text-2xl md:text-3xl font-bold mb-3 ${result ? 'text-red-800' : 'text-green-800'}`}>
 								{result ? 'Có nguy cơ tiểu đường' : 'Không có nguy cơ tiểu đường'}
 							</h3>
@@ -592,9 +615,17 @@ function Diagnosis() {
 								Kết quả: {result}
 							</div>
 							<p className="text-gray-700 leading-relaxed max-w-xl mx-auto">
-								{result 
-									? '⚕️ Bạn nên tham khảo ý kiến bác sĩ để được tư vấn và kiểm tra chi tiết hơn. Đây chỉ là dự đoán sơ bộ dựa trên AI.'
-									: '🎉 Kết quả tốt! Hãy duy trì lối sống lành mạnh, ăn uống cân bằng và kiểm tra sức khoẻ định kỳ.'
+								{result
+									? (
+										<span className="gap-2">
+											<FontAwesomeIcon icon={faBriefcaseMedical} style={{ color: '#A8425F' }} /> Bạn nên tham khảo ý kiến bác sĩ để được tư vấn và kiểm tra chi tiết hơn. Đây chỉ là dự đoán sơ bộ dựa trên AI.</span>
+									)
+									: (
+										<span className="gap-2">
+											<FontAwesomeIcon icon={faFire} style={{ color: '#EF4444' }} />
+											Kết quả tốt! Hãy duy trì lối sống lành mạnh, ăn uống cân bằng và kiểm tra sức khoẻ định kỳ.
+										</span>
+									)
 								}
 							</p>
 						</div>
@@ -604,7 +635,7 @@ function Diagnosis() {
 							<div className="card">
 								<div className="flex items-center gap-3 mb-6 pb-4 border-b-2 border-gray-100">
 									<div className="p-2 bg-indigo-100 rounded-lg">
-										<span className="text-2xl">💡</span>
+										<span className="text-2xl"><FontAwesomeIcon icon={faLightbulb} style={{ color: '#FFD35D' }} /></span>
 									</div>
 									<div>
 										<h3 className="text-xl font-bold text-gray-800">Lời khuyên cho bạn</h3>
@@ -616,13 +647,12 @@ function Diagnosis() {
 									{generateHealthAdvice(result, form).map((advice, index) => (
 										<div
 											key={index}
-											className={`p-4 rounded-xl border-l-4 ${
-												advice.priority === 'high'
-													? 'bg-red-50 border-red-500'
-													: advice.priority === 'medium'
+											className={`p-4 rounded-xl border-l-4 ${advice.priority === 'high'
+												? 'bg-red-50 border-red-500'
+												: advice.priority === 'medium'
 													? 'bg-yellow-50 border-yellow-500'
 													: 'bg-blue-50 border-blue-500'
-											} hover:shadow-md transition-all`}
+												} hover:shadow-md transition-all`}
 										>
 											<div className="flex items-start gap-3">
 												<div className="text-3xl flex-shrink-0">{advice.icon}</div>
@@ -650,7 +680,7 @@ function Diagnosis() {
 
 				{error && (
 					<div className="w-full max-w-md bg-red-50 border-l-4 border-red-500 p-4 rounded">
-						<p className="text-red-700 font-medium">❌ {error}</p>
+						<p className="text-red-700 font-medium"><FontAwesomeIcon icon={faCircleXmark} style={{ color: '#0479B6' }} /> {error}</p>
 					</div>
 				)}
 			</div>
@@ -679,7 +709,7 @@ function History() {
 	if (loading) {
 		return (
 			<div className="text-center py-12">
-				<div className="text-6xl mb-4 animate-bounce">⏳</div>
+				<div className="text-6xl mb-4 animate-bounce"><FontAwesomeIcon icon={faHourglassHalf} style={{ color: '#BF2D2D' }} /></div>
 				<p className="text-xl text-gray-600">Đang tải lịch sử...</p>
 			</div>
 		);
@@ -688,11 +718,11 @@ function History() {
 	if (data.length === 0) {
 		return (
 			<div className="text-center py-12 animate-fade-in">
-				<div className="text-6xl mb-4">📭</div>
+				<div className="text-6xl mb-4"><FontAwesomeIcon icon={faBoxOpen} style={{ color: '#5095D9' }} /></div>
 				<h2 className="text-2xl font-bold text-gray-800 mb-2">Chưa có lịch sử chẩn đoán</h2>
 				<p className="text-gray-600 mb-6">Hãy thực hiện chẩn đoán đầu tiên của bạn!</p>
 				<Link to="/diagnosis" className="btn-primary inline-block">
-					Chẩn đoán ngay 🏥
+					Chẩn đoán ngay <FontAwesomeIcon icon={faBookMedical} style={{ color: '#0ed8d4' }} />
 				</Link>
 			</div>
 		);
@@ -702,7 +732,7 @@ function History() {
 		<div className="space-y-6 animate-fade-in">
 			<div className="text-center">
 				<h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-					📊 Lịch sử chẩn đoán
+					<FontAwesomeIcon icon={faAreaChart} style={{ color: '#379BEA' }} /> Lịch sử chẩn đoán
 				</h1>
 				<p className="text-gray-600">Tổng số lần chẩn đoán: <span className="font-bold text-primary-600">{data.length}</span></p>
 			</div>
@@ -711,13 +741,12 @@ function History() {
 				{data.map((item) => (
 					<div
 						key={item.id}
-						className={`card hover:scale-[1.02] transition-transform ${
-							item.prediction !== 0 ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'
-						}`}
+						className={`card hover:scale-[1.02] transition-transform ${item.prediction !== 0 ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'
+							}`}
 					>
 						<div className="flex items-start justify-between mb-4">
 							<div className="flex items-center gap-3">
-								<div className="text-4xl">{item.prediction !== 0 ? '⚠️' : '✅'}</div>
+								<div className="text-4xl">{item.prediction !== 0 ? <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#EF4444' }} /> : <FontAwesomeIcon icon={faCheckCircle} style={{ color: '#58D58D' }} />}</div>
 								<div>
 									<h3 className={`text-xl font-bold ${item.prediction !== 0 ? 'text-red-700' : 'text-green-700'}`}>
 										{item.prediction !== 0 ? 'Có nguy cơ tiểu đường' : 'Không có nguy cơ'}
@@ -727,16 +756,15 @@ function History() {
 									</p>
 								</div>
 							</div>
-							<div className={`px-3 py-1 rounded-full text-sm font-semibold ${
-								item.prediction !== 0 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
-							}`}>
+							<div className={`px-3 py-1 rounded-full text-sm font-semibold ${item.prediction !== 0 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+								}`}>
 								Kết quả: {item.prediction}
 							</div>
 						</div>
 
 						<details className="mt-4">
 							<summary className="cursor-pointer text-primary-600 font-semibold hover:text-primary-700 select-none">
-								📋 Xem chi tiết các chỉ số
+								<FontAwesomeIcon icon={faClipboardList} style={{ color: '#D2C9DB' }} /> Xem chi tiết các chỉ số
 							</summary>
 							<div className="mt-4 grid md:grid-cols-3 gap-3">
 								{Object.entries(item.inputData).map(([key, value]) => {
@@ -746,7 +774,7 @@ function History() {
 										<div key={key} className="bg-gray-50 p-3 rounded-lg">
 											<div className="text-xs text-gray-500">{field?.label || key}</div>
 											<div className="font-semibold text-gray-800">
-												{field?.type === 'select' 
+												{field?.type === 'select'
 													? field.options?.find(o => o.value === numValue)?.label || String(value)
 													: String(value)
 												}
