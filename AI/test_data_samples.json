@@ -1,0 +1,167 @@
+{
+  "prediabetes_samples": [
+    {
+      "name": "Trường hợp 1: Người trung niên, thừa cân nhẹ",
+      "description": "Người 50 tuổi, thừa cân, huyết áp cao nhẹ, cholesterol cao",
+      "data": {
+        "HighBP": 1,
+        "HighChol": 1,
+        "CholCheck": 1,
+        "BMI": 27.5,
+        "Smoker": 0,
+        "Stroke": 0,
+        "HeartDiseaseorAttack": 0,
+        "PhysActivity": 0,
+        "Fruits": 1,
+        "Veggies": 1,
+        "HvyAlcoholConsump": 0,
+        "AnyHealthcare": 1,
+        "NoDocbcCost": 0,
+        "GenHlth": 3,
+        "MentHlth": 5,
+        "PhysHlth": 5,
+        "DiffWalk": 0,
+        "Sex": 1,
+        "Age": 9,
+        "Education": 5,
+        "Income": 6
+      }
+    },
+    {
+      "name": "Trường hợp 2: Người có BMI cao, ít vận động",
+      "description": "Tuổi 45, BMI 29, không tập thể dục, sức khỏe trung bình",
+      "data": {
+        "HighBP": 1,
+        "HighChol": 1,
+        "CholCheck": 1,
+        "BMI": 29.0,
+        "Smoker": 0,
+        "Stroke": 0,
+        "HeartDiseaseorAttack": 0,
+        "PhysActivity": 0,
+        "Fruits": 0,
+        "Veggies": 0,
+        "HvyAlcoholConsump": 0,
+        "AnyHealthcare": 1,
+        "NoDocbcCost": 0,
+        "GenHlth": 3,
+        "MentHlth": 3,
+        "PhysHlth": 3,
+        "DiffWalk": 0,
+        "Sex": 0,
+        "Age": 8,
+        "Education": 6,
+        "Income": 7
+      }
+    },
+    {
+      "name": "Trường hợp 3: Người có tiền sử gia đình, thừa cân",
+      "description": "55 tuổi, huyết áp cao, cholesterol cao, sức khỏe kém",
+      "data": {
+        "HighBP": 1,
+        "HighChol": 1,
+        "CholCheck": 1,
+        "BMI": 28.0,
+        "Smoker": 1,
+        "Stroke": 0,
+        "HeartDiseaseorAttack": 0,
+        "PhysActivity": 0,
+        "Fruits": 0,
+        "Veggies": 1,
+        "HvyAlcoholConsump": 0,
+        "AnyHealthcare": 1,
+        "NoDocbcCost": 0,
+        "GenHlth": 4,
+        "MentHlth": 10,
+        "PhysHlth": 10,
+        "DiffWalk": 1,
+        "Sex": 1,
+        "Age": 10,
+        "Education": 4,
+        "Income": 5
+      }
+    }
+  ],
+  "diabetes_samples": [
+    {
+      "name": "Trường hợp 4: Bệnh tiểu đường rõ ràng",
+      "description": "60 tuổi, béo phì, huyết áp cao, bệnh tim",
+      "data": {
+        "HighBP": 1,
+        "HighChol": 1,
+        "CholCheck": 1,
+        "BMI": 35.0,
+        "Smoker": 1,
+        "Stroke": 0,
+        "HeartDiseaseorAttack": 1,
+        "PhysActivity": 0,
+        "Fruits": 0,
+        "Veggies": 0,
+        "HvyAlcoholConsump": 0,
+        "AnyHealthcare": 1,
+        "NoDocbcCost": 1,
+        "GenHlth": 5,
+        "MentHlth": 15,
+        "PhysHlth": 20,
+        "DiffWalk": 1,
+        "Sex": 1,
+        "Age": 11,
+        "Education": 3,
+        "Income": 3
+      }
+    }
+  ],
+  "healthy_samples": [
+    {
+      "name": "Trường hợp 5: Người khỏe mạnh",
+      "description": "35 tuổi, BMI bình thường, tập thể dục đều đặn",
+      "data": {
+        "HighBP": 0,
+        "HighChol": 0,
+        "CholCheck": 1,
+        "BMI": 22.5,
+        "Smoker": 0,
+        "Stroke": 0,
+        "HeartDiseaseorAttack": 0,
+        "PhysActivity": 1,
+        "Fruits": 1,
+        "Veggies": 1,
+        "HvyAlcoholConsump": 0,
+        "AnyHealthcare": 1,
+        "NoDocbcCost": 0,
+        "GenHlth": 1,
+        "MentHlth": 0,
+        "PhysHlth": 0,
+        "DiffWalk": 0,
+        "Sex": 1,
+        "Age": 6,
+        "Education": 6,
+        "Income": 8
+      }
+    }
+  ],
+  "field_explanations": {
+    "HighBP": "Huyết áp cao (0: Không, 1: Có)",
+    "HighChol": "Cholesterol cao (0: Không, 1: Có)",
+    "CholCheck": "Đã kiểm tra cholesterol trong 5 năm (0: Không, 1: Có)",
+    "BMI": "Chỉ số khối cơ thể (18.5-24.9: Bình thường, 25-29.9: Thừa cân, >=30: Béo phì)",
+    "Smoker": "Hút thuốc (0: Không, 1: Có)",
+    "Stroke": "Từng bị đột quỵ (0: Không, 1: Có)",
+    "HeartDiseaseorAttack": "Bệnh tim/nhồi máu (0: Không, 1: Có)",
+    "PhysActivity": "Hoạt động thể chất (0: Không, 1: Có)",
+    "Fruits": "Ăn trái cây hàng ngày (0: Không, 1: Có)",
+    "Veggies": "Ăn rau hàng ngày (0: Không, 1: Có)",
+    "HvyAlcoholConsump": "Uống rượu nhiều (0: Không, 1: Có)",
+    "AnyHealthcare": "Có bảo hiểm y tế (0: Không, 1: Có)",
+    "NoDocbcCost": "Không khám vì chi phí (0: Không, 1: Có)",
+    "GenHlth": "Sức khỏe tổng quát (1: Excellent, 2: Very good, 3: Good, 4: Fair, 5: Poor)",
+    "MentHlth": "Số ngày sức khỏe tâm lý kém trong 30 ngày qua (0-30)",
+    "PhysHlth": "Số ngày sức khỏe thể chất kém trong 30 ngày qua (0-30)",
+    "DiffWalk": "Khó đi lại/leo cầu thang (0: Không, 1: Có)",
+    "Sex": "Giới tính (0: Nữ, 1: Nam)",
+    "Age": "Nhóm tuổi (1: 18-24, 2: 25-29, ..., 8: 45-49, 9: 50-54, 10: 55-59, 11: 60-64, 13: 80+)",
+    "Education": "Trình độ học vấn (1-6, 6 là cao nhất)",
+    "Income": "Thu nhập (1: <$10k, 2: $10-15k, ..., 8: >$75k)"
+  }
+}
+

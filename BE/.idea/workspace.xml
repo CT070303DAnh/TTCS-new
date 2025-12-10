@@ -6,24 +6,40 @@
   <component name="ChangeListManager">
     <list default="true" id="8ca7aeb7-38dd-4fea-a34e-12b86dd0d4f3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-brands-svg-icons.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-brands-svg-icons.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCopyright.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCopyright.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faPhoneAlt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faPhoneAlt.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faStarAndCrescent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faStarAndCrescent.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faUnlockKeyhole.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faUnlockKeyhole.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/axios.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/axios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/axios.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/axios.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-DRWLMN53.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-DRWLMN53.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-G3PMV62Z.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-G3PMV62Z.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-G3PMV62Z.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-G3PMV62Z.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-PJEEZAML.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-PJEEZAML.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-NMLHVZ76.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-NMLHVZ76.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-QRULMDK5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-QRULMDK5.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-TDH2IRYZ.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-TDH2IRYZ.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-router-dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-router-dom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-router-dom.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-router-dom.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-runtime.js" afterDir="false" />
@@ -51,7 +67,7 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;fix-ui&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/ACER/TTCS-new/BE&quot;,
@@ -89,16 +105,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/medic/DiabetesBackendApplication.java</url>
-          <line>6</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
