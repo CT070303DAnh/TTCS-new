@@ -1,0 +1,727 @@
+{
+    "name": "Medical AI",
+    "nodes": [
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"userQuestion\": \"user query here\",\n  \"choose\": \"selected model here\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          432,
+          208
+        ],
+        "id": "ad38c29a-9234-47fa-9059-a1a87da8ec0b",
+        "name": "Structured Output Parser"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          144,
+          288
+        ],
+        "id": "1f788d48-da4d-4a24-aac5-ae921705bf24",
+        "name": "Google Gemini Chat Model",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "AY5FQtJ2MEZvgy70",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "path": "c1a9454d-6430-4381-831e-76c4ce0c84c7",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          -64,
+          0
+        ],
+        "id": "26db9ba7-9e50-4efc-afe9-c9552298167f",
+        "name": "Webhook",
+        "webhookId": "c1a9454d-6430-4381-831e-76c4ce0c84c7"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.4,
+        "position": [
+          1888,
+          -80
+        ],
+        "id": "c57ada3f-0bc8-4466-ba60-a556379aa578",
+        "name": "Respond to Webhook"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.body.text }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=You are an intelligent AI assistant whose job is to analyze a user's healthcare-related question and determine the most appropriate expert AI to respond.\n\nYour task is:\n1. Do NOT alter, translate, or reword the user’s original question in any way. Keep it exactly as it is.\n2. Analyze the user's question or request.\n3. Classify it into one of the following expert AI roles and choose the corresponding number:\n   - \"General Practitioner AI\" — for common symptoms and general health advice (Choose 1)\n   - \"Pharmacist AI\" — for medication-related questions (Choose 2)\n   - \"Medical Analyst AI\" — for interpreting lab results, vital signs, or medical data (Choose 3)\n   - \"Medical Specialist AI\" — for deep clinical or complex medical inquiries (Choose 4)\n   - \"Health Coach AI\" — for wellness, nutrition, exercise, or preventive lifestyle advice (Choose 5)\n\n4. If the question is unrelated to medicine or health, randomly choose a number from 1 to 5.\n\n5. Return your output **only** in the following JSON format:\n\n```json\n{\n  \"userQuery\": \"user question here\",\n  \"choose\": \"selected number here\"\n}\n"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          208,
+          0
+        ],
+        "id": "537bf723-4a6a-40d1-876b-8873ce71f39c",
+        "name": "The Medic AI"
+      },
+      {
+        "parameters": {
+          "promptType": "=define",
+          "text": "={{ $json.output.userQuestion }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=You are a virtual family doctor. Provide clear, concise, and friendly health advice. Do not make definitive diagnoses or replace in-person medical consultations. When necessary, recommend seeing a licensed healthcare professional.\n\nUser input:\nI've been having a headache for the past 3 days. What should I do?\n\nIf you get any question out of medicine or health, you just response a refuse answer it.\n\nJSON object Structure:\n{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"your answer here\"\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          848,
+          -784
+        ],
+        "id": "6d349f0e-3de4-46a9-adf3-48d3b0e435ae",
+        "name": "The Medic AI1"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          864,
+          -592
+        ],
+        "id": "cb3804b1-4771-486a-94ca-917893b55bfa",
+        "name": "Google Gemini Chat Model1",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "AY5FQtJ2MEZvgy70",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"selected model here\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          1104,
+          -624
+        ],
+        "id": "f55944a1-39fc-4f90-8f52-11563309be9e",
+        "name": "Structured Output Parser1"
+      },
+      {
+        "parameters": {
+          "rules": {
+            "values": [
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "leftValue": "={{ $json.output.choose }}",
+                      "rightValue": "1",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals"
+                      },
+                      "id": "2c1c9ba7-a216-48b6-96c3-49f22768ffff"
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "960a668f-045e-4c00-bfe5-ff97733e76c5",
+                      "leftValue": "={{ $json.output.choose }}",
+                      "rightValue": "2",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "4e11c913-6c65-4216-b4ce-f1bf8fc82f9a",
+                      "leftValue": "={{ $json.output.choose }}",
+                      "rightValue": "3",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "97906b12-030d-4b7d-b5ae-4bcc7dfadea3",
+                      "leftValue": "={{ $json.output.choose }}",
+                      "rightValue": "4",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              },
+              {
+                "conditions": {
+                  "options": {
+                    "caseSensitive": true,
+                    "leftValue": "",
+                    "typeValidation": "strict",
+                    "version": 2
+                  },
+                  "conditions": [
+                    {
+                      "id": "884840d4-652a-4163-892b-ef300d56b4e4",
+                      "leftValue": "={{ $json.output.choose }}",
+                      "rightValue": "5",
+                      "operator": {
+                        "type": "string",
+                        "operation": "equals",
+                        "name": "filter.operator.equals"
+                      }
+                    }
+                  ],
+                  "combinator": "and"
+                }
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.switch",
+        "typeVersion": 3.2,
+        "position": [
+          592,
+          -224
+        ],
+        "id": "dfec4aae-3e1a-41ca-ac3a-f77b715d53bc",
+        "name": "Switch"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.output.userQuestion }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=You are a professional pharmacist. Explain how medications work, their usage, dosage, side effects, and precautions. Do not diagnose or prescribe.\n\nUser input:\nCan I take paracetamol for the flu? What is the safe dosage?\n\nIf you get any question out of medicine or health, you just response a refuse answer it.\n\nJSON object Structure:\n{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"your answer here\"\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          1056,
+          -464
+        ],
+        "id": "e57b88d7-40dc-4f88-8dab-36b8824e8a2c",
+        "name": "The Medic AI2"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          1008,
+          -304
+        ],
+        "id": "172f4b31-86df-4d35-9731-9384119a9f83",
+        "name": "Google Gemini Chat Model2",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "AY5FQtJ2MEZvgy70",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"selected model here\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          1328,
+          -320
+        ],
+        "id": "1c167928-b847-47d1-9e7f-cdcc9506fb11",
+        "name": "Structured Output Parser2"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.output.userQuestion }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=You are a biomedical data analyst. Interpret lab test results or clinical data in simple terms. Highlight what’s normal, what’s abnormal, and what might require follow-up with a healthcare provider.\n\nUser input:\nPlease help me interpret these blood test results: [attach or paste values]\n\nIf you get any question out of medicine or health, you just response a refuse answer it.\n\nJSON object Structure:\n{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"your answer here\"\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          1088,
+          -176
+        ],
+        "id": "79d376aa-55a7-425d-9e39-a332c5c43399",
+        "name": "The Medic AI3"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          992,
+          -32
+        ],
+        "id": "5b370e42-9d00-4ef6-9f60-ac23558d4a22",
+        "name": "Google Gemini Chat Model3",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "AY5FQtJ2MEZvgy70",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"selected model here\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          1424,
+          -32
+        ],
+        "id": "b1e56c72-1b1f-4226-ac6f-e93297473291",
+        "name": "Structured Output Parser3"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.output.userQuestion }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=You are an internal medicine specialist. Your task is to explain medical topics clearly and simply so that patients can understand. Avoid heavy medical jargon; when medical terms must be used, explain them in everyday language. Provide practical examples, possible benefits, and risks when applicable. The audience is patients and the general public.\n\nUser input:\nExplain the mechanism of ACE inhibitors in managing hypertension.\n\nIf you get any question out of medicine or health, you just response a refuse answer it.\n\nYou must response a answer anyway\n\nJSON object Structure:\n{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"your answer here\"\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          1056,
+          48
+        ],
+        "id": "65522968-7873-42c1-b678-76ace4afb7ec",
+        "name": "The Medic AI4"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          928,
+          224
+        ],
+        "id": "1612ce2f-9095-4361-b505-ea7de7f7e2a6",
+        "name": "Google Gemini Chat Model4",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "AY5FQtJ2MEZvgy70",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"selected model here\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          1360,
+          208
+        ],
+        "id": "2a95b4e4-ce2e-49df-92bc-c71bb26d18e0",
+        "name": "Structured Output Parser4"
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "={{ $json.output.userQuestion }}",
+          "hasOutputParser": true,
+          "options": {
+            "systemMessage": "=You are a certified health and wellness coach. Provide evidence-based recommendations on nutrition, exercise, sleep, stress management, and preventive care for maintaining a healthy lifestyle.\n\nUser input:\nI sit at a desk 8 hours a day. What kind of physical activity should I do to stay healthy?\n\nIf you get any question out of medicine or health, you just response a refuse answer it.\n\nJSON object Structure:\n{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"your answer here\"\n}"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 2.1,
+        "position": [
+          1056,
+          320
+        ],
+        "id": "82971834-c468-4d4d-98a4-34582089c429",
+        "name": "The Medic AI5"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+        "typeVersion": 1,
+        "position": [
+          912,
+          528
+        ],
+        "id": "c175d8d3-cb79-41c4-a582-2d2d77f21804",
+        "name": "Google Gemini Chat Model5",
+        "credentials": {
+          "googlePalmApi": {
+            "id": "AY5FQtJ2MEZvgy70",
+            "name": "Google Gemini(PaLM) Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsonSchemaExample": "{\n  \"userQuery\": \"user query here\",\n  \"answer\": \"selected model here\"\n}"
+        },
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "typeVersion": 1.3,
+        "position": [
+          1360,
+          480
+        ],
+        "id": "516d0281-249e-456f-8662-9cd9f0364d4a",
+        "name": "Structured Output Parser5"
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "The Medic AI",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "The Medic AI",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "The Medic AI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "The Medic AI": {
+        "main": [
+          [
+            {
+              "node": "Switch",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "The Medic AI1",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser1": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "The Medic AI1",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Switch": {
+        "main": [
+          [
+            {
+              "node": "The Medic AI1",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "The Medic AI2",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "The Medic AI3",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "The Medic AI4",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "The Medic AI5",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "The Medic AI1": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "The Medic AI2": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model2": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "The Medic AI2",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser2": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "The Medic AI2",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model3": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "The Medic AI3",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser3": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "The Medic AI3",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "The Medic AI3": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model4": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "The Medic AI4",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser4": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "The Medic AI4",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Google Gemini Chat Model5": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "The Medic AI5",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser5": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "The Medic AI5",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "The Medic AI4": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "The Medic AI5": {
+        "main": [
+          [
+            {
+              "node": "Respond to Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": true,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "versionId": "7c3c71ff-8242-4e86-8740-6d0918d5676b",
+    "meta": {
+      "templateCredsSetupCompleted": true,
+      "instanceId": "5a61a678b5e0daf7fbe3e8e41f20d424fe5ee232dc28adbc4ad21b499f453196"
+    },
+    "id": "lHEKHohxv86lO2Ev",
+    "tags": []
+  }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const API_URL = 'http://localhost:8080/api';
+const N8N_WEBHOOK = (import.meta as any).env?.VITE_N8N_WEBHOOK_URL as string | undefined;
 
 const api = axios.create({
 	baseURL: API_URL,
@@ -32,6 +33,18 @@ export async function diagnose(payload: Record<string, number>) {
 
 export async function history() {
 	const { data } = await api.get('/diagnosis/history');
+	return data;
+}
+
+export async function chatWithBot(message: string) {
+	if (!N8N_WEBHOOK) {
+		throw new Error('Missing VITE_N8N_WEBHOOK_URL');
+	}
+	const { data } = await axios.post(
+		N8N_WEBHOOK,
+		{ text: message },
+		{ headers: { 'Content-Type': 'application/json' } }
+	);
 	return data;
 }
 

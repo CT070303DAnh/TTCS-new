@@ -6,6 +6,7 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { diagnosisFields, getDefaultFormValues } from './utils/diagnosisFields';
 import { BMICalculator } from './components/BMICalculator';
 import { generateHealthAdvice } from './utils/healthAdvice';
+import { ChatWidget } from './components/ChatWidget';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faRobot, faBoltLightning, faLock, faClipboardList, faTriangleExclamation, faHandHoldingHeart,
@@ -766,6 +767,7 @@ export default function App() {
                         <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
+					<ChatWidget />
                 </Layout>
             </BrowserRouter>
         </AuthProvider>

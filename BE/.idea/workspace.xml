@@ -5,45 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ca7aeb7-38dd-4fea-a34e-12b86dd0d4f3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../AI/improve_diabetes_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../AI/improve_diabetes_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AI/test_predictions.ps1" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-brands-svg-icons.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-brands-svg-icons.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faAreaChart.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCheckCircle.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCopyright.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faCopyright.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faHourglassHalf.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faMailBulk.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faPhoneAlt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faPhoneAlt.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faStarAndCrescent.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faStarAndCrescent.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faUnlockKeyhole.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_free-solid-svg-icons_faUnlockKeyhole.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/@fortawesome_react-fontawesome.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/_metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-NMLHVZ76.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-NMLHVZ76.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-QRULMDK5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-QRULMDK5.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-TDH2IRYZ.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/chunk-TDH2IRYZ.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-dom_client.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-router-dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react-router-dom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-dev-runtime.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-runtime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/node_modules/.vite/deps/react_jsx-runtime.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FE/src/lib/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../FE/src/lib/api.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,22 +27,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DiabetesBackendApplication.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fix-ui&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ACER/TTCS-new/BE&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DiabetesBackendApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "chatbot",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ACER/TTCS-new/BE",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="BE" />
