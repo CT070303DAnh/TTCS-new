@@ -1,3 +1,4 @@
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { BrowserRouter, Routes, Route, Link, Navigate, useNavigate } from 'react-router-dom';
 import { login, register, diagnose, history } from './lib/api';
 import { useState, useEffect } from 'react';
@@ -8,17 +9,17 @@ import { BMICalculator } from './components/BMICalculator';
 import { generateHealthAdvice } from './utils/healthAdvice';
 import { ChatWidget } from './components/ChatWidget';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { sendEmail } from './lib/api';
 import {
     faRobot, faBoltLightning, faLock, faClipboardList, faTriangleExclamation, faHandHoldingHeart,
     faHospital, faBookMedical, faClockRotateLeft, faStethoscope, faRocket, faCity,
     faPhoneVolume, faRegistered, faUnlockKeyhole, faDoorOpen, faLightbulb,
     faMagnifyingGlassDollar, faFire, faBriefcaseMedical, faBoxOpen, faCircleXmark,
     faMailBulk, faCheckCircle, faHourglassHalf, faAreaChart,
-    // New icons for Wizard layout
-    faArrowRight, faArrowLeft, faUser, faHeartPulse, faWalking, faRedo
+    faArrowRight, faArrowLeft, faUser, faHeartPulse, faWalking, faRedo,
+    faPrint, faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 
-// --- LAYOUT (PRESERVED) ---
 function Layout({ children }: { children: React.ReactNode }) {
     const { isAuthenticated, logout, userEmail } = useAuth();
     const nav = useNavigate();
@@ -115,14 +116,12 @@ function Layout({ children }: { children: React.ReactNode }) {
     );
 }
 
-// --- HOME (PRESERVED) ---
 function Home() {
     const { isAuthenticated } = useAuth();
     const nav = useNavigate();
 
     return (
         <div className="space-y-12 animate-fade-in">
-            {/* Hero Section */}
             <div className="text-center space-y-6">
                 <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-primary-700 to-primary-900 bg-clip-text text-transparent animate-slide-up">
                     Hệ thống Chẩn đoán Tiểu đường
@@ -147,7 +146,6 @@ function Home() {
                 )}
             </div>
 
-            {/* Features */}
             <div className="grid md:grid-cols-3 gap-8">
                 <div className="feature-card">
                     <div className="text-4xl mb-4"><FontAwesomeIcon icon={faRobot} style={{ color: "#b63a1b", }} /></div>
@@ -166,7 +164,6 @@ function Home() {
                 </div>
             </div>
 
-            {/* How it works */}
             <div className="card">
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"><FontAwesomeIcon icon={faClipboardList} size='xl' style={{ color: "#113778", }} /> Cách sử dụng</h2>
                 <div className="grid md:grid-cols-4 gap-6">
@@ -187,7 +184,6 @@ function Home() {
                 </div>
             </div>
 
-            {/* Warning */}
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg shadow-md">
                 <div className="flex items-start gap-4">
                     <div className="text-3xl"><FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#45e600' }} /></div>
@@ -204,7 +200,6 @@ function Home() {
     );
 }
 
-// --- LOGIN (PRESERVED) ---
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -261,7 +256,6 @@ function Login() {
     );
 }
 
-// --- REGISTER (PRESERVED) ---
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -323,7 +317,6 @@ function Register() {
     );
 }
 
-// --- FIELD COMPONENT (PRESERVED WITH STYLES) ---
 function Field({ fieldDef, value, onChange }: { fieldDef: typeof diagnosisFields[0], value: number, onChange: (val: number) => void }) {
     const [isFocused, setIsFocused] = useState(false);
 
@@ -409,13 +402,30 @@ function Field({ fieldDef, value, onChange }: { fieldDef: typeof diagnosisFields
     );
 }
 
-// --- DIAGNOSIS (UPDATED WITH WIZARD LAYOUT & FIXES) ---
 function Diagnosis() {
     const [form, setForm] = useState<Record<string, number>>(getDefaultFormValues());
     const [result, setResult] = useState<null | number>(null);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [currentStep, setCurrentStep] = useState(0);
+    const [emailLoading, setEmailLoading] = useState(false);
+    const { userEmail } = useAuth();
+
+    const handleSendEmail = async () => {
+        if (!userEmail) {
+            alert("Không tìm thấy email người dùng!");
+            return;
+        }
+        setEmailLoading(true);
+        try {
+            await sendEmail(userEmail, result!, form);
+            alert(`Đã gửi kết quả về email: ${userEmail}`);
+        } catch (e) {
+            alert("Lỗi khi gửi email. Vui lòng thử lại sau.");
+        } finally {
+            setEmailLoading(false);
+        }
+    };
 
     const steps = [
         {
@@ -477,7 +487,6 @@ function Diagnosis() {
     return (
         <div className="max-w-4xl mx-auto pb-12">
             {result === null ? (
-                // --- FORM NHẬP LIỆU (WIZARD) ---
                 <>
                     <div className="text-center mb-10 animate-slide-up">
                         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
@@ -489,7 +498,6 @@ function Diagnosis() {
                         </p>
                     </div>
 
-                    {/* Progress Bar */}
                     <div className="mb-8 px-2 md:px-0">
                         <div className="flex justify-between mb-4 relative">
                             <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -z-10 transform -translate-y-1/2 rounded-full"></div>
@@ -517,7 +525,7 @@ function Diagnosis() {
                                     <p className="text-gray-500 text-sm">{steps[currentStep].description}</p>
                                 </div>
                             </div>
-                            
+
                             <div className="grid md:grid-cols-2 gap-6">
                                 {currentFields.map(field => (
                                     <Field key={field.name} fieldDef={field} value={form[field.name]} onChange={(val) => handleFieldChange(field.name, val)} />
@@ -529,7 +537,7 @@ function Diagnosis() {
                             <button onClick={handleBack} disabled={currentStep === 0} className={`px-6 py-3 rounded-xl font-semibold flex items-center gap-2 transition-all ${currentStep === 0 ? 'opacity-0 pointer-events-none' : 'bg-white border border-gray-300 hover:bg-gray-50 text-gray-700'}`}>
                                 <FontAwesomeIcon icon={faArrowLeft} /> Quay lại
                             </button>
-                            
+
                             {currentStep < steps.length - 1 ? (
                                 <button onClick={handleNext} className="bg-primary-600 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:bg-primary-700 hover:shadow-primary-500/30 flex items-center gap-2 transform active:scale-95 transition-all">
                                     Tiếp tục <FontAwesomeIcon icon={faArrowRight} />
@@ -543,14 +551,11 @@ function Diagnosis() {
                     </div>
                 </>
             ) : (
-                // --- MÀN HÌNH KẾT QUẢ (ĐÃ KHÔI PHỤC NỘI DUNG GỐC) ---
                 <div id="result-section" className="space-y-8 animate-slide-up">
-                    <div className={`relative overflow-hidden w-full p-10 rounded-3xl text-center shadow-2xl ${
-                        isRisk 
-                        ? 'bg-gradient-to-br from-red-500 to-rose-600 text-white' 
+                    <div className={`relative overflow-hidden w-full p-10 rounded-3xl text-center shadow-2xl ${isRisk
+                        ? 'bg-gradient-to-br from-red-500 to-rose-600 text-white'
                         : 'bg-gradient-to-br from-emerald-500 to-teal-600 text-white'
-                    }`}>
-                        {/* Background Pattern */}
+                        }`}>
                         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
                             <FontAwesomeIcon icon={faStethoscope} className="absolute -top-10 -left-10 text-[15rem]" />
                         </div>
@@ -559,12 +564,11 @@ function Diagnosis() {
                             <div className="bg-white/20 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm shadow-inner">
                                 <FontAwesomeIcon icon={isRisk ? faTriangleExclamation : faCheckCircle} className="text-5xl text-white drop-shadow-md animate-bounce" />
                             </div>
-                            
+
                             <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
                                 {isRisk ? 'CÓ NGUY CƠ TIỂU ĐƯỜNG' : 'KHÔNG CÓ NGUY CƠ'}
                             </h2>
-                            
-                            {/* --- ĐÂY LÀ PHẦN ĐÃ KHÔI PHỤC 2 ICON CŨ --- */}
+
                             <div className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto font-medium mb-8 leading-relaxed bg-white/10 p-6 rounded-2xl border border-white/20 backdrop-blur-md">
                                 {isRisk ? (
                                     <div className="flex flex-col items-center gap-3">
@@ -580,7 +584,7 @@ function Diagnosis() {
                             </div>
 
                             <div className="flex flex-col md:flex-row justify-center gap-4">
-                                <button 
+                                <button
                                     onClick={() => {
                                         setResult(null);
                                         setCurrentStep(0);
@@ -591,7 +595,7 @@ function Diagnosis() {
                                     <FontAwesomeIcon icon={faRedo} /> Chỉnh sửa lại
                                 </button>
 
-                                <button 
+                                <button
                                     onClick={() => {
                                         setResult(null);
                                         setCurrentStep(0);
@@ -601,6 +605,25 @@ function Diagnosis() {
                                     className="bg-white/20 text-white border-2 border-white/40 px-6 py-3 rounded-full font-bold hover:bg-white/30 transition-all flex items-center justify-center gap-2"
                                 >
                                     <FontAwesomeIcon icon={faClipboardList} /> Nhập mới
+                                </button>
+
+                                <button
+                                    onClick={() => window.print()}
+                                    className="bg-gray-900/30 text-white border-2 border-white/40 px-6 py-3 rounded-full font-bold hover:bg-gray-900/50 transition-all flex items-center justify-center gap-2"
+                                >
+                                    <FontAwesomeIcon icon={faPrint} /> Lưu PDF
+                                </button>
+                                <button
+                                    onClick={handleSendEmail}
+                                    disabled={emailLoading}
+                                    className="bg-blue-600 text-white px-6 py-3 rounded-full font-bold hover:bg-blue-700 shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-70"
+                                >
+                                    {emailLoading ? (
+                                        <FontAwesomeIcon icon={faHourglassHalf} className="animate-spin" />
+                                    ) : (
+                                        <FontAwesomeIcon icon={faEnvelope} />
+                                    )}
+                                    {emailLoading ? "Đang gửi..." : "Gửi Email"}
                                 </button>
                             </div>
                         </div>
@@ -616,15 +639,16 @@ function Diagnosis() {
                                 <p className="text-gray-500">Được cá nhân hóa dựa trên 21 chỉ số vừa nhập</p>
                             </div>
                         </div>
-                        
+
                         <div className="grid md:grid-cols-2 gap-4">
                             {generateHealthAdvice(result, form).map((advice, index) => (
-                                <div key={index} className={`p-5 rounded-2xl border-l-4 transition-all hover:shadow-lg bg-gray-50 ${
-                                    advice.priority === 'high' ? 'border-red-500 bg-red-50' : 
+                                <div key={index} className={`p-5 rounded-2xl border-l-4 transition-all hover:shadow-lg bg-gray-50 ${advice.priority === 'high' ? 'border-red-500 bg-red-50' :
                                     advice.priority === 'medium' ? 'border-orange-500 bg-orange-50' : 'border-blue-500 bg-blue-50'
-                                }`}>
+                                    }`}>
                                     <div className="flex gap-4">
-                                        <div className="text-2xl mt-1">{advice.icon}</div>
+                                        <div className={`text-3xl mt-1 ${advice.color}`}>
+                                            <FontAwesomeIcon icon={advice.icon} />
+                                        </div>
                                         <div>
                                             <h4 className="font-bold text-lg mb-1 text-gray-800">{advice.title}</h4>
                                             <p className="text-sm text-gray-600 leading-relaxed">{advice.description}</p>
@@ -636,7 +660,7 @@ function Diagnosis() {
                     </div>
                 </div>
             )}
-            
+
             {error && (
                 <div className="fixed bottom-6 right-6 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 animate-slide-up z-50">
                     <FontAwesomeIcon icon={faCircleXmark} className="text-xl" />
@@ -650,7 +674,6 @@ function Diagnosis() {
     );
 }
 
-// --- HISTORY (PRESERVED) ---
 function History() {
     const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
@@ -668,6 +691,40 @@ function History() {
         }
         fetchHistory();
     }, []);
+
+    const parseDate = (dateInput: any) => {
+        try {
+            if (Array.isArray(dateInput)) {
+                return new Date(dateInput[0], dateInput[1] - 1, dateInput[2], dateInput[3] || 0, dateInput[4] || 0, dateInput[5] || 0);
+            }
+            return new Date(dateInput);
+        } catch (e) {
+            return new Date();
+        }
+    };
+
+    const chartData = [...data]
+        .map((item, index) => {
+            const dateObj = parseDate(item.createdAt);
+            const isValid = !isNaN(dateObj.getTime());
+            return {
+                uniqueId: `${isValid ? dateObj.getTime() : 0}_${index}`,
+                bmi: item.inputData.BMI,
+                dateLabel: isValid ? dateObj.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit' }) : '??',
+                fullDateLabel: isValid ? dateObj.toLocaleString('vi-VN', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit', year: 'numeric' }) : 'Lỗi ngày tháng'
+            };
+        })
+        .sort((a, b) => parseInt(a.uniqueId.split('_')[0]) - parseInt(b.uniqueId.split('_')[0]));
+
+    const customTicks: string[] = [];
+    const tempSet = new Set();
+
+    chartData.forEach(item => {
+        if (!tempSet.has(item.dateLabel)) {
+            customTicks.push(item.uniqueId);
+            tempSet.add(item.dateLabel);
+        }
+    });
 
     if (loading) {
         return (
@@ -692,68 +749,142 @@ function History() {
     }
 
     return (
-        <div className="space-y-6 animate-fade-in">
+        <div className="space-y-8 animate-fade-in">
             <div className="text-center">
                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <FontAwesomeIcon icon={faAreaChart} style={{ color: '#379BEA' }} /> Lịch sử chẩn đoán
+                    <FontAwesomeIcon icon={faAreaChart} style={{ color: '#379BEA' }} /> Theo dõi sức khỏe
                 </h1>
                 <p className="text-gray-600">Tổng số lần chẩn đoán: <span className="font-bold text-primary-600">{data.length}</span></p>
             </div>
 
+            <div className="bg-white p-6 rounded-3xl shadow-xl border border-gray-100">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <FontAwesomeIcon icon={faHeartPulse} className="text-rose-500" />
+                        Biểu đồ chỉ số BMI
+                    </h3>
+                    <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                        Xu hướng gần đây
+                    </span>
+                </div>
+
+                <div className="h-[300px] w-full">
+                    <ResponsiveContainer width="100%" height="100%">
+                        <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                            <defs>
+                                <linearGradient id="colorBmi" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="5%" stopColor="#0284c7" stopOpacity={0.8} />
+                                    <stop offset="95%" stopColor="#0284c7" stopOpacity={0} />
+                                </linearGradient>
+                            </defs>
+                            <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+
+                            { }
+                            <XAxis
+                                dataKey="uniqueId"
+                                axisLine={false}
+                                tickLine={false}
+                                tick={{ fill: '#6b7280', fontSize: 11 }}
+                                dy={10}
+                                ticks={customTicks}
+                                tickFormatter={(uid) => {
+                                    const item = chartData.find(d => d.uniqueId === uid);
+                                    return item ? item.dateLabel : '';
+                                }}
+                            />
+
+                            <YAxis
+                                domain={['dataMin - 2', 'dataMax + 2']}
+                                axisLine={false}
+                                tickLine={false}
+                                tick={{ fill: '#6b7280', fontSize: 12 }}
+                            />
+
+                            <Tooltip
+                                contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }}
+                                labelStyle={{ color: '#374151', fontWeight: 'bold', marginBottom: '5px' }}
+                                formatter={(value: any) => [`${value}`, 'BMI']}
+                                labelFormatter={(label) => {
+                                    const item = chartData.find(d => d.uniqueId === label);
+                                    return item ? item.fullDateLabel : label;
+                                }}
+                                cursor={{ stroke: '#9ca3af', strokeWidth: 1, strokeDasharray: '5 5' }}
+                            />
+
+                            <Area
+                                type="monotone"
+                                dataKey="bmi"
+                                stroke="#0284c7"
+                                strokeWidth={3}
+                                fillOpacity={1}
+                                fill="url(#colorBmi)"
+
+                                activeDot={{ r: 6, strokeWidth: 2, stroke: '#fff', fill: '#0ea5e9' }}
+                            />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+                <p className="text-center text-xs text-gray-400 mt-4 italic">
+                    * Các điểm hiển thị theo thứ tự lần khám
+                </p>
+            </div>
+
             <div className="grid gap-6">
-                {data.map((item) => (
-                    <div
-                        key={item.id}
-                        className={`card hover:scale-[1.02] transition-transform ${item.prediction !== 0 ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'
-                            }`}
-                    >
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="flex items-center gap-3">
-                                <div className="text-4xl">{item.prediction !== 0 ? <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#EF4444' }} /> : <FontAwesomeIcon icon={faCheckCircle} style={{ color: '#58D58D' }} />}</div>
-                                <div>
-                                    <h3 className={`text-xl font-bold ${item.prediction !== 0 ? 'text-red-700' : 'text-green-700'}`}>
-                                        {item.prediction !== 0 ? 'Có nguy cơ tiểu đường' : 'Không có nguy cơ'}
-                                    </h3>
-                                    <p className="text-sm text-gray-500">
-                                        {new Date(item.createdAt).toLocaleString('vi-VN')}
-                                    </p>
+                {data.map((item) => {
+                    const dateDisplay = parseDate(item.createdAt);
+                    return (
+                        <div
+                            key={item.id}
+                            className={`card hover:scale-[1.02] transition-transform ${item.prediction !== 0 ? 'border-l-4 border-red-500' : 'border-l-4 border-green-500'
+                                }`}
+                        >
+                            <div className="flex items-start justify-between mb-4">
+                                <div className="flex items-center gap-3">
+                                    <div className="text-4xl">{item.prediction !== 0 ? <FontAwesomeIcon icon={faTriangleExclamation} style={{ color: '#EF4444' }} /> : <FontAwesomeIcon icon={faCheckCircle} style={{ color: '#58D58D' }} />}</div>
+                                    <div>
+                                        <h3 className={`text-xl font-bold ${item.prediction !== 0 ? 'text-red-700' : 'text-green-700'}`}>
+                                            {item.prediction !== 0 ? 'Có nguy cơ tiểu đường' : 'Không có nguy cơ'}
+                                        </h3>
+                                        <p className="text-sm text-gray-500">
+                                            {dateDisplay.toLocaleString('vi-VN')}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className={`px-3 py-1 rounded-full text-sm font-semibold ${item.prediction !== 0 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
+                                    }`}>
+                                    Kết quả: {item.prediction}
                                 </div>
                             </div>
-                            <div className={`px-3 py-1 rounded-full text-sm font-semibold ${item.prediction !== 0 ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'
-                                }`}>
-                                Kết quả: {item.prediction}
-                            </div>
-                        </div>
 
-                        <details className="mt-4">
-                            <summary className="cursor-pointer text-primary-600 font-semibold hover:text-primary-700 select-none">
-                                <FontAwesomeIcon icon={faClipboardList} style={{ color: '#D2C9DB' }} /> Xem chi tiết các chỉ số
-                            </summary>
-                            <div className="mt-4 grid md:grid-cols-3 gap-3">
-                                {Object.entries(item.inputData).map(([key, value]) => {
-                                    const field = diagnosisFields.find(f => f.name === key);
-                                    const numValue = Number(value);
-                                    return (
-                                        <div key={key} className="bg-gray-50 p-3 rounded-lg">
-                                            <div className="text-xs text-gray-500">{field?.label || key}</div>
-                                            <div className="font-semibold text-gray-800">
-                                                {field?.type === 'select'
-                                                    ? field.options?.find(o => o.value === numValue)?.label || String(value)
-                                                    : String(value)
-                                                }
+                            <details className="mt-4">
+                                <summary className="cursor-pointer text-primary-600 font-semibold hover:text-primary-700 select-none">
+                                    <FontAwesomeIcon icon={faClipboardList} style={{ color: '#D2C9DB' }} /> Xem chi tiết các chỉ số
+                                </summary>
+                                <div className="mt-4 grid md:grid-cols-3 gap-3">
+                                    {Object.entries(item.inputData).map(([key, value]) => {
+                                        const field = diagnosisFields.find(f => f.name === key);
+                                        const numValue = Number(value);
+                                        return (
+                                            <div key={key} className="bg-gray-50 p-3 rounded-lg">
+                                                <div className="text-xs text-gray-500">{field?.label || key}</div>
+                                                <div className="font-semibold text-gray-800">
+                                                    {field?.type === 'select'
+                                                        ? field.options?.find(o => o.value === numValue)?.label || String(value)
+                                                        : String(value)
+                                                    }
+                                                </div>
                                             </div>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </details>
-                    </div>
-                ))}
+                                        );
+                                    })}
+                                </div>
+                            </details>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
 }
-
 export default function App() {
     return (
         <AuthProvider>
@@ -767,7 +898,7 @@ export default function App() {
                         <Route path="/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
-					<ChatWidget />
+                    <ChatWidget />
                 </Layout>
             </BrowserRouter>
         </AuthProvider>

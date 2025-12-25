@@ -164,3 +164,33 @@ input:focus {
   }
 }
 
+/* --- CSS CHO CHẾ ĐỘ IN ẤN (CẬP NHẬT) --- */
+@media print {
+  /* 1. Ẩn các thành phần thừa */
+  header, footer, .fixed, button, nav { 
+    display: none !important;
+  }
+
+  /* 2. QUAN TRỌNG: Lệnh này bắt buộc trình duyệt in cả màu nền (Gradient) */
+  body, #result-section {
+    -webkit-print-color-adjust: exact !important;   /* Cho Chrome, Safari, Edge */
+    print-color-adjust: exact !important;           /* Cho Firefox */
+  }
+
+  /* 3. Căn chỉnh khung kết quả */
+  #result-section { 
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent !important; /* Để nó hiện màu gradient của thẻ con */
+  }
+
+  /* Đảm bảo text màu trắng trên nền màu vẫn giữ nguyên là màu trắng */
+  #result-section h2, #result-section p, #result-section span {
+    text-shadow: none !important;
+  }
+}

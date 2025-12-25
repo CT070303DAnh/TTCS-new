@@ -47,4 +47,12 @@ export async function chatWithBot(message: string) {
 	);
 	return data;
 }
-
+export async function sendEmail(toEmail: string, prediction: number, inputData: any) {
+    const res = await fetch(`${API_URL}/email/send`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ toEmail, prediction, inputData }),
+    });
+    if (!res.ok) throw new Error('Gửi email thất bại');
+    return res.json();
+}
